@@ -21,5 +21,5 @@ btnNew.onclick = function () {
 	addNewItem(document.getElementById("todoList"), itemText);
 
 	inItemText.focus();
-	inItemText.select();
+	inItemText.value = ""
 }
