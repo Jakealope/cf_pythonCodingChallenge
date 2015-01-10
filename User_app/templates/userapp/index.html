@@ -1,0 +1,9 @@
+{% if latest_user_list %}
+    <ul>
+    {% for userinfo in latest_user_list %}
+        <li><a href="{% url 'userapp:detail' userinfo.id %}">{{ userinfo.userinfo_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No users are available.</p>
+{% endif %}
