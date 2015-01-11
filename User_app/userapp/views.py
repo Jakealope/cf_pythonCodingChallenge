@@ -1,16 +1,50 @@
-from django.http import HttpResponse
 from django.shortcuts import render
-
+from django.forms import ModelForm
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from userapp.models import UserInfo
 
+
+class UserForm(ModelForm):
+    class Meta:
+        model = UserInfo
+        fields = ['f_name', 'l_name', 'email']
+
+
 def index(request):
-	latest_user_list = UserInfo.objects.order_by('-create_date')
-	context = {'latest_user_list': latest_user_list}
-	return render(request, 'userapp/index.html', context)
+    if request.method == 'POST':
+        userinfo = UserForm(request.POST)
+    	if userinfo.is_valid():
+    		userinfo.save()
+    return render(request, 'userapp/index_base.html', {
+        'users': UserInfo.objects.order_by('f_name'),
+    })
 
-def detail(request, user_id):
-	userinfo = get_object_or_404(UserInfo, pk=user_id)
-	return render(request, 'userapp/detail.html', {'userinfo': userinfo})
+
+def detail(request, l_name):
+    try:
+        user = UserInfo.objects.get(pk=id)
+        form = UserForm(instance=user)
+    except UserInfo.DoesNotExist:
+        raise Http404
+    return render(request, 'userapp/detail.html', {
+        'user': user,
+        'form': form,
+    })
 
 
+def update(request, l_name):
+    if request.method == 'POST':
+        user = UserInfo.objects.get(pk=id)
+        userinfo = UserForm(request.POST)
+        if userinfo.is_valid():
+            user.f_name = request.POST['f_name']
+            user.l_name = request.POST['l_name']
+            user.email = request.POST['email']
+            user.save()
+        return HttpResponseRedirect('/userapp/')
 
+
+def delete(request, l_name):
+    user = UserInfo.objects.get(pk=id)
+    user.delete()
+    return HttpResponseRedirect('/userapp/')    

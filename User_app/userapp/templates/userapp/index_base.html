@@ -1,0 +1,44 @@
+{% extends 'userapp/index.html' %}
+
+
+{% block content %}
+<div id="columns">
+    <div class="left column">
+        <form action="" method="POST">{% csrf_token %}
+            <p><label for="f_name"><b>First Name:</b></label></br>
+                <input id="f_name" type="text" name="f_name" required="True" maxlength="100" style="width:200px" autofocus /></p>
+            <p><label for="l_name">Last Name:</label></br>
+                <input id="l_name" type="text" name="l_name" maxlength="100" style="width:200px" /></p>
+            <p><label for="email"><b>Email:</b></label></br>
+                <input id="email" type="email" name="email" required="True" maxlength="75" style="width:200px" /></p>
+            <input type="submit" value="Add to User Database" />
+        </form>
+    </div>
+
+    <div class="left column">
+        {% if users %}
+            <table>
+                <col width="150"><col width="150"><col width="200"><col width="30"><col width="30">
+                <thead>
+                    <tr>
+                        <th>First</th>
+                        <th>Last</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td align=center>{{ user.f_name }}</td>
+                            <td align=center>{{ user.l_name }}</td>
+                            <td align=center>{{ user.email }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <strong>No users to display!</strong>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
