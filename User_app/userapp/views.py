@@ -7,7 +7,7 @@ from userapp.models import UserInfo
 class UserForm(ModelForm):
     class Meta:
         model = UserInfo
-        fields = ['f_name', 'l_name', 'email']
+        fields = ['id', 'f_name', 'l_name', 'email']
 
 
 def index(request):
@@ -16,11 +16,11 @@ def index(request):
     	if userinfo.is_valid():
     		userinfo.save()
     return render(request, 'userapp/index_base.html', {
-        'users': UserInfo.objects.order_by('f_name'),
+        'users': UserInfo.objects.order_by('id'),
     })
 
 
-def detail(request, l_name):
+def detail(request, id):
     try:
         user = UserInfo.objects.get(pk=id)
         form = UserForm(instance=user)
@@ -32,7 +32,7 @@ def detail(request, l_name):
     })
 
 
-def update(request, l_name):
+def update(request, id):
     if request.method == 'POST':
         user = UserInfo.objects.get(pk=id)
         userinfo = UserForm(request.POST)
@@ -44,7 +44,7 @@ def update(request, l_name):
         return HttpResponseRedirect('/userapp/')
 
 
-def delete(request, l_name):
+def delete(request, id):
     user = UserInfo.objects.get(pk=id)
     user.delete()
     return HttpResponseRedirect('/userapp/')    

@@ -7,10 +7,11 @@ class UserInfo(models.Model):
 	f_name = models.CharField('First Name', max_length=100)
 	l_name = models.CharField('Last Name', max_length=200)
 	email = models.EmailField('Email')
-	create_date = models.DateTimeField('Date Created')
+	create_date = models.DateTimeField('Date Created', auto_now_add=True, auto_now=False)
+	
 
 	def __unicode__(self):
-		return "%s, %s" % (self.f_name, self.l_name)
+		return "%s, %s" % (self.f_name, self.l_name)	
 
 	def was_created_recently(self):
 		return self.create_date >= timezone.now() - datetime.timedelta(days=1)
