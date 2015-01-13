@@ -14,6 +14,7 @@
             }
             #columns {
                 min-width: 900px;
+                border:50px;
             }
             #columns .column {
                 position: relative;
@@ -25,37 +26,41 @@
             #columns .right {
                 float: right;
                 width: 300px;
-                background: #F8F8FF;
+                background: #C3DAE3;
             }
             body {
                 font-family: helvetica;; 
-                background:#FFF;
+                background:#C3DAE3;
                 margin: 10px 20px;
             }
             h1 {
                 font-family: helvetica;
-                color:#333333; background:#F8F8FF; 
+                color:#C3DAE3; background:#00CBE9; 
                 margin:8px; 
                 padding:16px;
             }
             table {
                 margin-bottom: 20px;
-                border-collapse: collapse;
+                border: 10px;
                 font-family: helvetica;
+
             }
             table tr:nth-child(odd) td {
-                background: #E8E8FF;
+                background: #B9D5DF;
+                
             }
             td {
-                border-top: 1px solid #DDD;
+                border-top: 1px solid #00CBE9;
                 padding-top: 8px;
                 padding-bottom: 8px;
                 padding-right: 10px;
                 padding-left: 10px;
+                
             }
+
             p {
                 font-family: helvetica;; 
-                background:#FFF;
+                background:#C3DAE3;
                 margin: 10px 20px;
                 margin-bottom: 20px;
                 border-collapse: collapse;
@@ -64,7 +69,7 @@
         </style>
     </head>
     <body>
-        <h1>User Management app</h1>
+        <h1>User Management App</h1>
 
             {% block content %}{% endblock %}
     
