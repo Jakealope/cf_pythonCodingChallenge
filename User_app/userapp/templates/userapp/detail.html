@@ -1,3 +1,11 @@
-{% extends 'index.html' %}
+{% extends 'userapp/index.html' %}
 
-<h1>{{ <userinfo class="f_name"></userinfo> }}</h1>
+
+{% block content %}
+<div class="left column">
+<form action="{% url 'update' user.id %}" method="POST">{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="Add to User Database" />
+</form>
+</div>
+{% endblock %}
