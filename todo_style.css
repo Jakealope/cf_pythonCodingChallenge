@@ -1,0 +1,19 @@
+	
+	body {
+		font-family:helvetica;
+		background:#eee;
+		margin: 50px;
+	}
+	ul {
+		list-style: none;
+		padding: 0;
+		width: 300px
+	}
+	li {
+		border: 1px solid #ccc;
+		background: #eee;
+		padding: 5px 5px;
+		margin: 10px 0 10px 0;
+		color #000;
+	}
+	
