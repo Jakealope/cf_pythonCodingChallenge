@@ -1,3 +1,4 @@
+
 function addListItem() {
 	//This variable gives a location for the new item
 	var text = $("#inItemText").val();
